@@ -7,8 +7,8 @@
 // @match        https://library.busan.go.kr/*/book/search/collectionOfMaterials*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=library.busan.go.kr
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/IdeaCannon/juryelibrary.io/refs/heads/main/Library_DefaultSelection(anrak).js
-// @downloadURL  https://raw.githubusercontent.com/IdeaCannon/juryelibrary.io/refs/heads/main/Library_DefaultSelection(anrak).js
+// @updateURL    https://raw.githubusercontent.com/IdeaCannon/juryelibrary.io/refs/heads/main/Library_DefaultSelection(hyeogsin).js
+// @downloadURL  https://raw.githubusercontent.com/IdeaCannon/juryelibrary.io/refs/heads/main/Library_DefaultSelection(hyeogsin).js
 // ==/UserScript==
 
 (function() {
