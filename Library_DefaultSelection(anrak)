@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         도서관 기본 선택
+// @name         도서관 기본 선택(안락누리도서관)
 // @namespace    https://library.busan.go.kr/
 // @version      1.01
 // @description  도서관 자료 검색 시 도서관에 맞게 기본선택해줍니다.
@@ -7,6 +7,8 @@
 // @match        https://library.busan.go.kr/*/book/search/collectionOfMaterials*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=library.busan.go.kr
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/IdeaCannon/juryelibrary.io/refs/heads/main/Library_DefaultSelection(anrak).js
+// @downloadURL  https://raw.githubusercontent.com/IdeaCannon/juryelibrary.io/refs/heads/main/Library_DefaultSelection(anrak).js
 // ==/UserScript==
 
 (function() {
@@ -14,6 +16,8 @@
 
     const library_map = {
         ssbooks: 'AW', //사상도서관
+        anrbooks: 'BP', //안락누리도서관
+        //anrbooks: 'LM', //혁신어울림 작은도서관
     };
 
     const option_key = '#search_managecode option'; //선택 가능한 옵션들
