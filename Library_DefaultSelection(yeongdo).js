@@ -3,7 +3,7 @@
 // @namespace    https://library.busan.go.kr/
 // @version      1.01
 // @description  도서관 자료 검색 시 도서관에 맞게 기본선택해줍니다.
-// @author       You
+// @author       hideD
 // @match        https://library.busan.go.kr/*/book/search/collectionOfMaterials*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=library.busan.go.kr
 // @grant        none
