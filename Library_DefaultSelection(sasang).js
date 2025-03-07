@@ -15,7 +15,7 @@
     'use strict';
 
     const library_map = {
-        ssbooks: 'AM', //사상도서관
+        ssbooks: 'AW', //사상도서관
     };
 
     const option_key = '#search_managecode option'; //선택 가능한 옵션들
