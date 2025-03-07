@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         도서관 기본 선택(영도도서관)
+// @name         도서관 기본 선택(사상도서관)
 // @namespace    https://library.busan.go.kr/
 // @version      1.01
 // @description  도서관 자료 검색 시 도서관에 맞게 기본선택해줍니다.
