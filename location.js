@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         주례열린 서가위치 출력
 // @namespace    juryeopenlibrary
-// @version      2025-03-02
+// @version      2025-06-21
 // @description  도서관 서가위치&지도 표시
 // @author       IdeaCannon(Assistant by HideD)
 // @match        https://library.busan.go.kr/juryebooks/book/search/bookPrint
