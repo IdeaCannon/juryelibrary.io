@@ -33,16 +33,33 @@
         window.newClose = window.close;
         window.close = () => {};
 
-        $('colgroup col.col1').css('width', '50px');
+        // 80mm 바코드 프린터 인쇄용 스타일 주입
+        $('head').append(`
+            <style>
+                @media print {
+                    @page { size: 80mm 297mm; margin: 2mm; }
+                    body { margin: 0; padding: 0; width: 100%; }
+                    #target { width: 100%; max-width: 100%; }
+                }
+                #target { width: 100%; max-width: 74mm; margin: 0 auto; }
+                #target table { width: 100% !important; table-layout: auto; border-collapse: collapse; }
+                #target td { padding: 1px 0; vertical-align: top; }
+                #target td.label-col { width: 1%; white-space: nowrap; padding-right: 6px; }
+                #target td.nowrap-val { white-space: nowrap; }
+            </style>
+        `);
+
+        // 원본 colgroup의 90px 고정폭 해제
+        $('colgroup col').eq(0).css('width', 'auto');
 
         let trList = $('tr');
         console.log(trList);
 
-        let 서명 = trList.eq(1).find('td:eq(1)').text();
-        let 청구기호 = trList.eq(2).find('td:eq(1)').text();
-        let 등록번호 = trList.eq(3).find('td:eq(1)').text();
-        let 저자 = trList.eq(4).find('td:eq(1)').text();
-        let 자료실 = trList.eq(5).find('td:eq(1)').text();
+        let 서명 = trList.eq(1).find('td:eq(1)').text().trim();
+        let 청구기호 = trList.eq(2).find('td:eq(1)').text().trim();
+        let 등록번호 = trList.eq(3).find('td:eq(1)').text().trim();
+        let 저자 = trList.eq(4).find('td:eq(1)').text().trim();
+        let 자료실 = trList.eq(5).find('td:eq(1)').text().trim();
 
         // 기존 tr 삭제
         trList.eq(1).remove();
@@ -190,27 +207,20 @@
         // 표 정렬을 위한 새로운 tr 추가
         trList.eq(0).find('td:eq(0)').html("<div style='border-top: 1px dashed black;'></div>");
 
-        const fontStyle = "font-size: 14px; font-weight: bold; font-family: MalgunGothic;";
-        let title = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
-                        <td style='${fontStyle}'>제&nbsp;&nbsp;&nbsp;&nbsp;목:</td>
-                        <td style='${fontStyle}' class='last td2'>${서명}</td>
-                     </tr>`;
-        $('tr').eq(1).before(title);
-        let CallNumber = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
-                        <td style='${fontStyle}'>청구기호:</td>
-                        <td style='${fontStyle}' class='last td2'>${청구기호}</td>
-                     </tr>`;
-        $('tr').eq(2).before(CallNumber);
-        let RegiNumber = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
-                        <td style='${fontStyle}'>등록번호:</td>
-                        <td style='${fontStyle}' class='last td2'>${등록번호}</td>
-                     </tr>`;
-        $('tr').eq(3).before(RegiNumber);
-        let Author = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
-                        <td style='${fontStyle}'>저&nbsp;&nbsp;&nbsp;&nbsp;자:</td>
-                        <td style='${fontStyle}' class='last td2'>${저자}</td>
-                     </tr>`;
-        $('tr').eq(4).before(Author);
+        const fontStyle = "font-size: 13px; font-weight: bold; font-family: MalgunGothic;";
+
+        function createRow(labelHtml, valueText, nowrap = false) {
+            const $tr = $("<tr class='first td1'></tr>");
+            const $labelTd = $(`<td class='label-col' style='${fontStyle}'></td>`).html(labelHtml);
+            const $valTd = $(`<td class='last td2${nowrap ? ' nowrap-val' : ''}' style='${fontStyle}'></td>`).text(valueText);
+            return $tr.append($labelTd, $valTd);
+        }
+
+        $('tr').eq(1).before(createRow('제&nbsp;&nbsp;&nbsp;&nbsp;목:', 서명));
+        $('tr').eq(2).before(createRow('청구기호:', 청구기호, true));
+        $('tr').eq(3).before(createRow('등록번호:', 등록번호, true));
+        $('tr').eq(4).before(createRow('저&nbsp;&nbsp;&nbsp;&nbsp;자:', 저자));
+
         자료실 = 자료실
             .replace('[주례열린]', '')
             .replace('종합자료실(지하1층)', '종합자료실')
@@ -219,17 +229,13 @@
             .replace('유아자료실(2층)', '유아자료실')
             .replace('열린자료실(3층)', '열린자료실')
             .trim();
-        let room = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
-                        <td style='${fontStyle}'>자&nbsp;료&nbsp;실: </td>
-                        <td style='${fontStyle}' class='last td2'>${자료실}</td>
-                     </tr>`;
-        $('tr').eq(5).before(room);
+
+        $('tr').eq(5).before(createRow('자&nbsp;료&nbsp;실:', 자료실, true));
+
         trList.eq(6).find('td:eq(0)').html("");
+
         let lastTr = $('tr:last');
-        lastTr.before(`<tr style='text-align: justify; ${fontStyle}' class='first td1'>
-                        <td style='${fontStyle}'>서가위치: </td>
-                        <td style='${fontStyle}' class='last td2'>${서가위치}</td>
-                     </tr>`);
+        lastTr.before(createRow('서가위치:', 서가위치, true));
 
         // 서가위치에 따라 이미지 호출
         let imageUrl;
@@ -381,7 +387,7 @@
             <tr>
                 <td colspan="2" style="text-align: center;">
                     <img src="${imageUrl}"
-                         style="width: 250px; float: left;"/>
+                         style="width: 100%; max-width: 230px; height: auto; display: block; margin: 6px auto 0;"/>
                 </td>
             </tr>
         `);
