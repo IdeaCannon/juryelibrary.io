@@ -190,42 +190,46 @@
         // 표 정렬을 위한 새로운 tr 추가
         trList.eq(0).find('td:eq(0)').html("<div style='border-top: 1px dashed black;'></div>");
 
-        let title = `<tr style='font-size: 14px; text-align: justify; font-weight: bold; font-family: 돋움' class='first td1'>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움'>제&nbsp;&nbsp;&nbsp;&nbsp;목:</td>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움' class='last td2'>${서명}</td>
+        const fontStyle = "font-size: 14px; font-weight: bold; font-family: MalgunGothic;";
+        let title = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
+                        <td style='${fontStyle}'>제&nbsp;&nbsp;&nbsp;&nbsp;목:</td>
+                        <td style='${fontStyle}' class='last td2'>${서명}</td>
                      </tr>`;
         $('tr').eq(1).before(title);
-
-        let CallNumber = `<tr style='font-size: 14px; text-align: justify; font-weight: bold; font-family: 돋움' class='first td1'>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움'>청구기호:</td>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움' class='last td2'>${청구기호}</td>
+        let CallNumber = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
+                        <td style='${fontStyle}'>청구기호:</td>
+                        <td style='${fontStyle}' class='last td2'>${청구기호}</td>
                      </tr>`;
         $('tr').eq(2).before(CallNumber);
-
-        let RegiNumber = `<tr style='font-size: 14px; text-align: justify; font-weight: bold; font-family: 돋움' class='first td1'>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움'>등록번호:</td>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움' class='last td2'>${등록번호}</td>
+        let RegiNumber = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
+                        <td style='${fontStyle}'>등록번호:</td>
+                        <td style='${fontStyle}' class='last td2'>${등록번호}</td>
                      </tr>`;
         $('tr').eq(3).before(RegiNumber);
-
-        let Author = `<tr style='font-size: 14px; text-align: justify; font-weight: bold; font-family: 돋움' class='first td1'>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움'>저&nbsp;&nbsp;&nbsp;&nbsp;자:</td>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움' class='last td2'>${저자}</td>
+        let Author = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
+                        <td style='${fontStyle}'>저&nbsp;&nbsp;&nbsp;&nbsp;자:</td>
+                        <td style='${fontStyle}' class='last td2'>${저자}</td>
                      </tr>`;
         $('tr').eq(4).before(Author);
-
-        자료실 = 자료실.replace('[주례열린]', '').replace('종합자료실(지하1층)', '종합자료실').replace('어린이자료실1(1층)', '어린이자료실1').replace('어린이자료실2(2층)', '어린이자료실2').replace('유아자료실(2층)', '유아자료실').replace('열린자료실(3층)', '열린자료실').trim();
-        let room = `<tr style='font-size: 14px; text-align: justify; font-weight: bold; font-family: 돋움' class='first td1'>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움'>자&nbsp;료&nbsp;실: </td>
-                        <td style='font-size: 14px; font-weight: bold; font-family: 돋움' class='last td2'>${자료실}</td>
+        자료실 = 자료실
+            .replace('[주례열린]', '')
+            .replace('종합자료실(지하1층)', '종합자료실')
+            .replace('어린이자료실1(1층)', '어린이자료실1')
+            .replace('어린이자료실2(2층)', '어린이자료실2')
+            .replace('유아자료실(2층)', '유아자료실')
+            .replace('열린자료실(3층)', '열린자료실')
+            .trim();
+        let room = `<tr style='text-align: justify; ${fontStyle}' class='first td1'>
+                        <td style='${fontStyle}'>자&nbsp;료&nbsp;실: </td>
+                        <td style='${fontStyle}' class='last td2'>${자료실}</td>
                      </tr>`;
         $('tr').eq(5).before(room);
-
-        trList.eq(6).find('td:eq(0)').html("")
-
-
+        trList.eq(6).find('td:eq(0)').html("");
         let lastTr = $('tr:last');
-        lastTr.before(`<tr style='font-size: 14px; text-align: justify; font-weight: bold;font-family: 돋움' class='first td1'><td style='font-size: 14px; font-weight: bold;font-family: 돋움 '>서가위치: </td><td style="font-size: 14px; font-weight: bold;font-family: 돋움 " class="last td2" >${서가위치}</td></tr>`);
+        lastTr.before(`<tr style='text-align: justify; ${fontStyle}' class='first td1'>
+                        <td style='${fontStyle}'>서가위치: </td>
+                        <td style='${fontStyle}' class='last td2'>${서가위치}</td>
+                     </tr>`);
 
         // 서가위치에 따라 이미지 호출
         let imageUrl;
