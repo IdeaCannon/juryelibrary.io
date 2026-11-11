@@ -190,7 +190,7 @@
         // 표 정렬을 위한 새로운 tr 추가
         trList.eq(0).find('td:eq(0)').html("<div style='border-top: 1px dashed black;'></div>");
 
-        const labelStyle = "font-size: 14px; text-align: justify; font-weight: bold; font-family:MalgunGothic;";
+        const labelStyle = "width: 70px; white-space: nowrap; font-size: 14px; text-align: justify; font-weight: bold; font-family:MalgunGothic;";
         const valueStyle = "font-size: 14px; font-weight: bold; font-family:MalgunGothic;";
 
         function createRow(labelHtml, valueText) {
