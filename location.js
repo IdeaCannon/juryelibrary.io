@@ -37,14 +37,14 @@
         $('head').append(`
             <style>
                 @media print {
-                    @page { size: 80mm 297mm; margin: 2mm; }
+                    @page { margin: 1%; }
                     body { margin: 0; padding: 0; width: 100%; }
                     #target { width: 100%; max-width: 100%; }
                 }
-                #target { width: 100%; max-width: 74mm; margin: 0 auto; }
+                #target { width: 100%; max-width: 76mm; margin: 0 auto; }
                 #target table { width: 100% !important; table-layout: auto; border-collapse: collapse; }
                 #target td { padding: 1px 0; vertical-align: top; }
-                #target td.label-col { width: 1%; white-space: nowrap; padding-right: 6px; }
+                #target td.label-col { width: 1%; white-space: nowrap; padding-right: 4px; }
                 #target td.nowrap-val { white-space: nowrap; }
             </style>
         `);
@@ -207,7 +207,7 @@
         // 표 정렬을 위한 새로운 tr 추가
         trList.eq(0).find('td:eq(0)').html("<div style='border-top: 1px dashed black;'></div>");
 
-        const fontStyle = "font-size: 13px; font-weight: bold; font-family: MalgunGothic;";
+        const fontStyle = "font-size: 14px; font-weight: bold; font-family: MalgunGothic;";
 
         function createRow(labelHtml, valueText, nowrap = false) {
             const $tr = $("<tr class='first td1'></tr>");
